@@ -25,6 +25,8 @@ Step 2 — install (in Claude Code chat):
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
+**Invoke**: Use **`/fangirl`** in chat, open the **fangirl** skill via the Skill tool (e.g. `oh-my-fangirl:fangirl`), or use natural-language triggers such as `rainbow vibes` or `list modes`.
+
 Update (terminal):
 ```bash
 claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace
@@ -115,6 +117,8 @@ claude plugin marketplace add FuDesign2008/oh-my-fangirl
 ```
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
+
+**唤起**：在会话中使用 **`/fangirl`**、通过 Skill 工具选择 **fangirl**（如 `oh-my-fangirl:fangirl`），或直接使用自然语言触发词（如 `rainbow vibes`、`列出模式`）。
 
 **更新**（终端）：
 
