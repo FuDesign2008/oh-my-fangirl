@@ -24,10 +24,21 @@ Update:
 claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
-**Cursor:**
+**Cursor (local plugin):**
 
+```bash
+# Clone the repository
+git clone https://github.com/FuDesign2008/oh-my-fangirl.git ~/oh-my-fangirl
+
+# Link as a local Cursor plugin
+ln -s ~/oh-my-fangirl ~/.cursor/plugins/local/oh-my-fangirl
 ```
-/plugin-add oh-my-fangirl
+
+Restart Cursor or run **Developer: Reload Window** to activate.
+
+Update:
+```bash
+cd ~/oh-my-fangirl && git pull
 ```
 
 **OpenCode:**
@@ -67,7 +78,7 @@ npx skills update
 | Platform | Path |
 |----------|------|
 | Claude Code | `~/.claude/skills/oh-my-fangirl` |
-| Cursor | `~/.cursor/extensions/oh-my-fangirl` |
+| Cursor | `~/.cursor/plugins/local/oh-my-fangirl` |
 | OpenCode | `~/.config/opencode/oh-my-fangirl` |
 
 ---
@@ -99,12 +110,22 @@ npx skills update
 claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
-### Cursor
+### Cursor（本地插件）
 
-在会话中执行：
+```bash
+# 克隆仓库
+git clone https://github.com/FuDesign2008/oh-my-fangirl.git ~/oh-my-fangirl
 
+# 以本地插件形式链接到 Cursor
+ln -s ~/oh-my-fangirl ~/.cursor/plugins/local/oh-my-fangirl
 ```
-/plugin-add oh-my-fangirl
+
+重启 Cursor，或执行 **Developer: Reload Window** 激活。
+
+**更新**：
+
+```bash
+cd ~/oh-my-fangirl && git pull
 ```
 
 ### OpenCode
@@ -145,5 +166,5 @@ npx skills update
 | 平台 | 常见路径 |
 |------|----------|
 | Claude Code | `~/.claude/skills/oh-my-fangirl` |
-| Cursor | `~/.cursor/extensions/oh-my-fangirl` |
+| Cursor | `~/.cursor/plugins/local/oh-my-fangirl` |
 | OpenCode | `~/.config/opencode/oh-my-fangirl` |

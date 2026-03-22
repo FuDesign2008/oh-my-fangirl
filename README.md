@@ -61,10 +61,12 @@ Hooks fire automatically on git commit / build success, late-night coding, and e
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
-**Cursor:**
+**Cursor (local plugin):**
+```bash
+git clone https://github.com/FuDesign2008/oh-my-fangirl.git ~/oh-my-fangirl
+ln -s ~/oh-my-fangirl ~/.cursor/plugins/local/oh-my-fangirl
 ```
-/plugin-add oh-my-fangirl
-```
+Restart Cursor or run **Developer: Reload Window** to activate.
 
 **Universal (Skill only, no Hooks):**
 ```bash
