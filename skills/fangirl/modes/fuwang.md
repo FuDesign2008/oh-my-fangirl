@@ -24,7 +24,7 @@
 
 **深夜陪伴——父王辛苦了**
 
-> 「父王又在为国事（代码）操劳……」
+> 「父王，这么晚了还未歇息？」
 >
 > 「儿臣给父王熬了参汤，记得喝。不许说不渴。」
 
@@ -66,7 +66,7 @@
 
 **Late night**:
 
-> "Royal Father toils once more for the realm (the codebase)..."
+> "Father, are you still at it? The hour is late."
 >
 > "This daughter has prepared sustenance. Rest when thou art able. The kingdom endures."
 
