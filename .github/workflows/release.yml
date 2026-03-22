@@ -86,9 +86,24 @@ jobs:
             --title "chore: bump version to ${VERSION}" \
             --body "由 Auto Version Bump workflow 自动创建。将以 squash 合并并附带 [skip ci]，避免再次触发 release workflow。")
           PR_NUM="${PR_URL##*/}"
-          gh pr merge "$PR_NUM" --squash \
-            --subject "chore: bump version to ${VERSION} [skip ci]" \
-            --delete-branch
+
+          # Retry merge up to 5 times — GitHub may need a few seconds to
+          # settle the base branch ref after PR creation or a recent merge.
+          for ATTEMPT in 1 2 3 4 5; do
+            if gh pr merge "$PR_NUM" --squash \
+              --subject "chore: bump version to ${VERSION} [skip ci]" \
+              --delete-branch; then
+              echo "Merge succeeded on attempt $ATTEMPT"
+              break
+            fi
+            if [ "$ATTEMPT" -eq 5 ]; then
+              echo "::error::Merge failed after 5 attempts"
+              exit 1
+            fi
+            echo "Merge attempt $ATTEMPT failed, retrying in ${ATTEMPT}0s..."
+            sleep "${ATTEMPT}0"
+          done
+
           git fetch origin main
           git checkout main
           git reset --hard origin/main
