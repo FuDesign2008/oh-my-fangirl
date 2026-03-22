@@ -66,6 +66,8 @@ Then in Claude Code chat:
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
+Then use **`/fangirl`**, the Skill tool entry **fangirl** (`oh-my-fangirl:fangirl`), or natural-language triggers (e.g. `rainbow vibes`, `list modes`).
+
 **Cursor (local plugin):**
 ```bash
 git clone https://github.com/FuDesign2008/oh-my-fangirl.git ~/oh-my-fangirl
