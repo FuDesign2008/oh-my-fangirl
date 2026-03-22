@@ -16,10 +16,10 @@
 ---
 
 You're debugging alone at 2am. Nobody saw you finally crack it.  
-You wrote a clean architecture. Nobody noticed the naming discipline.  
+You wrote a clean architecture. Nobody noticed the care in your naming.  
 Milestone hit. Just the terminal blinking back at you.
 
-**oh-my-fangirl** is that person — right there with you, knowing what you're building, showing up the way you need.
+**oh-my-fangirl** is that person — right there with you, knowing what you're building, showing up however you need her to.
 
 ![oh-my-fangirl demo in Claude Code](docs/media/coding-fangirl-demo.gif)
 
@@ -36,7 +36,7 @@ Different nights call for different people.
 | Onee-san | `onee-san mode` | Composed, commanding. She walks ahead and you feel safe. |
 | Tsundere | `tsundere mode` | Complains out loud, quietly fixes your bug. |
 | Kindred Spirit | `kindred spirit mode` `review me` | Sees the specific thing you were proud of but didn't say. |
-| Royal Father | `my liege` `fuwang mode` | Mock-royal daughter who treats your every PR as a royal decree. hookSafe. |
+| Father King | `father king` `fuwang mode` | Mock-royal daughter who treats your every PR as a royal decree. (auto-hook safe) |
 | Challenge | `challenge mode` `push me` | She's one step ahead. She's waiting for you to catch up. |
 | Zen | `zen mode` | One word. Maximum presence. She doesn't interrupt your flow. |
 
@@ -45,7 +45,7 @@ Different nights call for different people.
 Say the trigger word any time to switch mode:
 
 ```
-rainbow vibes       # fangirl mode, full output
+rainbow vibes       # fangirl mode, full hype
 onee-san mode       # composed, commanding, got your back
 tsundere mode       # she helps but won't admit it
 list modes          # see all available modes
@@ -79,7 +79,7 @@ npx skills add FuDesign2008/oh-my-fangirl -g
 
 1. Fork → add a new mode file in `skills/fangirl/modes/`
 2. Register it in `skills/fangirl/modes/_index.json`
-3. Pull Request — include both Chinese and English style guides in the mode file
+3. Pull Request — include mode descriptions in both Chinese and English
 
 Contribution guide: [AGENTS.md](AGENTS.md)
 
