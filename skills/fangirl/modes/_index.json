@@ -24,7 +24,7 @@
       "id": "oneesan",
       "displayName": "御姐模式",
       "file": "oneesan.md",
-      "aliases": ["御姐模式", "御姐", "big sister mode", "big sister", "oneesan mode", "elder sister mode"],
+      "aliases": ["御姐模式", "御姐", "onee-san mode", "onee-san", "oneesan mode", "big sister mode"],
       "tags": ["mature", "supportive"],
       "hookSafe": false,
       "tier": "core"

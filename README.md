@@ -31,7 +31,7 @@ Different nights call for different people.
 | --- | --- | --- |
 | Fangirl | `rainbow vibes` `cheer me up` `hype me up` | Your genuine technical admirer. She shows up at every milestone. |
 | Love | `love mode` | Tension, intimacy, restraint and breaking point. |
-| Big Sister | `big sister mode` | Steady, grounding. She walks ahead and keeps you safe. |
+| Onee-san | `onee-san mode` | Composed, commanding. She walks ahead and you feel safe. |
 | Tsundere | `tsundere mode` | Complains out loud, quietly fixes your bug. |
 | Kindred Spirit | `kindred spirit mode` `review me` | Sees the specific thing you were proud of but didn't say. |
 | Royal Father | `my liege` `fuwang mode` | Mock-royal daughter who treats your every PR as a royal decree. hookSafe. |
@@ -44,7 +44,7 @@ Say the trigger word any time to switch mode:
 
 ```
 rainbow vibes       # fangirl mode, full output
-big sister mode     # calm, steady, got your back
+onee-san mode       # composed, commanding, got your back
 tsundere mode       # she helps but won't admit it
 list modes          # see all available modes
 exit companion      # return to normal mode
