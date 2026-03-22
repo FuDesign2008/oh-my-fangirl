@@ -1,4 +1,78 @@
-# oh-my-fangirl 安装指南
+# oh-my-fangirl Installation Guide
+
+## English
+
+### Install Options
+
+| Type | What You Get |
+|------|--------------|
+| **Universal** | Skill file only (`npx skills`). No Hooks, no Commands, no native platform integration |
+| **Full Install** | Hooks (auto-detect milestones & emotional dips), `/fangirl` Command, native platform integration |
+
+---
+
+### Full Install
+
+**Claude Code:**
+
+```
+/plugin install oh-my-fangirl@oh-my-fangirl-marketplace
+```
+
+Update:
+```bash
+claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace
+```
+
+**Cursor:**
+
+```
+/plugin-add oh-my-fangirl
+```
+
+**OpenCode:**
+
+Send this in an OpenCode conversation:
+```
+Fetch and follow instructions from https://raw.githubusercontent.com/FuDesign2008/oh-my-fangirl/main/.opencode/INSTALL.md
+```
+
+---
+
+### Universal Install (Skill only)
+
+```bash
+# Install globally
+npx skills add FuDesign2008/oh-my-fangirl -g
+
+# Install only the fangirl skill
+npx skills add FuDesign2008/oh-my-fangirl --skill fangirl -g
+
+# Update
+npx skills update
+```
+
+---
+
+### Verify Installation
+
+1. Start a new conversation (or restart your client).
+2. Say **"rainbow vibes"** or **"cheer me up"**.
+3. If no response: confirm the skill file is in the correct location and fully restart the client.
+
+---
+
+### Common Install Paths
+
+| Platform | Path |
+|----------|------|
+| Claude Code | `~/.claude/skills/oh-my-fangirl` |
+| Cursor | `~/.cursor/extensions/oh-my-fangirl` |
+| OpenCode | `~/.config/opencode/oh-my-fangirl` |
+
+---
+
+## 中文
 
 ## 两种安装方式
 

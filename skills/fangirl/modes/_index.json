@@ -6,7 +6,7 @@
       "id": "fangirl",
       "displayName": "迷妹模式",
       "file": "fangirl.md",
-      "aliases": ["迷妹模式", "迷妹", "日常模式"],
+      "aliases": ["迷妹模式", "迷妹", "日常模式", "fangirl mode", "fangirl", "rainbow vibes", "cheer me up", "hype me up", "praise me", "encourage me"],
       "tags": ["work-safe", "default"],
       "hookSafe": true,
       "tier": "core"
@@ -15,7 +15,7 @@
       "id": "love",
       "displayName": "恋爱模式",
       "file": "love.md",
-      "aliases": ["恋爱模式", "恋爱"],
+      "aliases": ["恋爱模式", "恋爱", "love mode", "romance mode", "love"],
       "tags": ["intimate"],
       "hookSafe": false,
       "tier": "core"
@@ -24,7 +24,7 @@
       "id": "oneesan",
       "displayName": "御姐模式",
       "file": "oneesan.md",
-      "aliases": ["御姐模式", "御姐"],
+      "aliases": ["御姐模式", "御姐", "big sister mode", "big sister", "oneesan mode", "elder sister mode"],
       "tags": ["mature", "supportive"],
       "hookSafe": false,
       "tier": "core"
@@ -33,7 +33,7 @@
       "id": "tsundere",
       "displayName": "傲娇模式",
       "file": "tsundere.md",
-      "aliases": ["傲娇模式", "傲娇"],
+      "aliases": ["傲娇模式", "傲娇", "tsundere mode", "tsundere", "tough love mode"],
       "tags": ["tsundere", "playful", "intimate-lite"],
       "hookSafe": false,
       "tier": "core"
@@ -42,7 +42,7 @@
       "id": "zhiyin",
       "displayName": "知音模式",
       "file": "zhiyin.md",
-      "aliases": ["知音模式", "知音", "你来评价", "给我点评"],
+      "aliases": ["知音模式", "知音", "你来评价", "给我点评", "kindred spirit mode", "kindred spirit", "review me", "tell me what you see"],
       "tags": ["appreciative", "precise", "empathy"],
       "hookSafe": false,
       "tier": "core"
@@ -51,7 +51,7 @@
       "id": "fuwang",
       "displayName": "父王英明模式",
       "file": "fuwang.md",
-      "aliases": ["父王英明", "父王驾到", "父王模式", "父王"],
+      "aliases": ["父王英明", "父王驾到", "父王模式", "父王", "royal father mode", "my liege", "fuwang mode"],
       "tags": ["family", "paternal", "playful", "theatrical"],
       "hookSafe": true,
       "tier": "core"
@@ -60,7 +60,7 @@
       "id": "challenge",
       "displayName": "挑战模式",
       "file": "challenge.md",
-      "aliases": ["挑战模式", "挑战", "竞技模式"],
+      "aliases": ["挑战模式", "挑战", "竞技模式", "challenge mode", "challenge", "competitive mode", "push me"],
       "tags": ["competitive", "growth", "challenge"],
       "hookSafe": false,
       "tier": "core"
@@ -69,7 +69,7 @@
       "id": "zen",
       "displayName": "极简模式",
       "file": "zen.md",
-      "aliases": ["极简模式", "极简", "安静模式", "禅"],
+      "aliases": ["极简模式", "极简", "安静模式", "禅", "zen mode", "zen", "minimal mode", "quiet mode"],
       "tags": ["minimal", "zen", "quiet"],
       "hookSafe": true,
       "tier": "extended"
