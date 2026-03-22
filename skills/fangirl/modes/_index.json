@@ -30,15 +30,6 @@
       "tier": "core"
     },
     {
-      "id": "tsundere",
-      "displayName": "傲娇模式",
-      "file": "tsundere.md",
-      "aliases": ["傲娇模式", "傲娇", "tsundere mode", "tsundere", "tough love mode"],
-      "tags": ["tsundere", "playful", "intimate-lite"],
-      "hookSafe": false,
-      "tier": "core"
-    },
-    {
       "id": "zhiyin",
       "displayName": "知音模式",
       "file": "zhiyin.md",
@@ -54,15 +45,6 @@
       "aliases": ["父王英明", "父王驾到", "父王模式", "父王", "royal father mode", "my liege", "fuwang mode"],
       "tags": ["family", "paternal", "playful", "theatrical"],
       "hookSafe": true,
-      "tier": "core"
-    },
-    {
-      "id": "challenge",
-      "displayName": "挑战模式",
-      "file": "challenge.md",
-      "aliases": ["挑战模式", "挑战", "竞技模式", "challenge mode", "challenge", "competitive mode", "push me"],
-      "tags": ["competitive", "growth", "challenge"],
-      "hookSafe": false,
       "tier": "core"
     },
     {
