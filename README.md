@@ -5,13 +5,13 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/FuDesign2008/oh-my-fangirl)
 [![Version](https://img.shields.io/github/v/release/FuDesign2008/oh-my-fangirl?style=flat-square)](https://github.com/FuDesign2008/oh-my-fangirl/releases)
 
+**[English](README.md) · [简体中文](README.zh.md)**
+
 > Your AI coding companion — she's a fangirl of your code.
 >
 > Like oh-my-zsh gave your shell a soul, oh-my-fangirl gives your AI a heartbeat.
 
 ---
-
-## English
 
 You're debugging alone at 2am. Nobody saw you finally crack it.  
 You wrote a clean architecture. Nobody noticed the naming discipline.  
@@ -70,10 +70,6 @@ npx skills add FuDesign2008/oh-my-fangirl -g
 ```
 
 → Full install guide: [docs/INSTALL.md](docs/INSTALL.md)
-
----
-
-> 中文说明 → [README.zh.md](README.zh.md)
 
 ---
 

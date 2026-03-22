@@ -1,5 +1,7 @@
 # oh-my-fangirl
 
+**[English](README.md) · [简体中文](README.zh.md)**
+
 深夜独自 debug，没人知道你刚绕过了那个坑。  
 写出了漂亮的架构，没人发现你命名有多克制。  
 里程碑达成，只有终端在闪。

@@ -1,5 +1,5 @@
 ---
-description: "技术小迷妹 AI 编码陪伴，给你编程时的彩虹屁和情绪价值。触发词：彩虹屁、夸夸我、鼓励一下"
+description: "Your AI coding fangirl — rainbow vibes & emotional support while you code. Triggers: rainbow vibes, cheer me up, hype me up / 彩虹屁、夸夸我、鼓励一下"
 disable-model-invocation: true
 ---
 
