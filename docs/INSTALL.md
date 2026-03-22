@@ -15,11 +15,17 @@
 
 **Claude Code:**
 
+Step 1 — register the marketplace (terminal, one-time):
+```bash
+claude plugin marketplace add FuDesign2008/oh-my-fangirl
+```
+
+Step 2 — install (in Claude Code chat):
 ```
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
-Update:
+Update (terminal):
 ```bash
 claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace
 ```
@@ -98,13 +104,19 @@ npx skills update
 
 ### Claude Code
 
-在会话中执行：
+第一步——注册 Marketplace（终端，仅需一次）：
+
+```bash
+claude plugin marketplace add FuDesign2008/oh-my-fangirl
+```
+
+第二步——在 Claude Code 会话中安装：
 
 ```
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
 
-**更新**：
+**更新**（终端）：
 
 ```bash
 claude plugin update oh-my-fangirl@oh-my-fangirl-marketplace

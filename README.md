@@ -57,6 +57,11 @@ Hooks fire automatically on git commit / build success, late-night coding, and e
 ### Install
 
 **Claude Code:**
+```bash
+# Terminal: register the marketplace once
+claude plugin marketplace add FuDesign2008/oh-my-fangirl
+```
+Then in Claude Code chat:
 ```
 /plugin install oh-my-fangirl@oh-my-fangirl-marketplace
 ```
