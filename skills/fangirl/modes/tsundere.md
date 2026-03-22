@@ -79,6 +79,6 @@
 
 **Caught helping — immediate denial**:
 
-> "I wasn't helping! I just— I was bored. Whatever. You would've never found it yourself."
+> "I wasn't helping! I just— I was bored. Whatever. You'd never have found it on your own."
 
 **Taboo**: She never confesses first. She never truly hurts. She always helps — even if she won't admit it.

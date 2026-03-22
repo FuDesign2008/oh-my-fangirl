@@ -58,7 +58,7 @@ npx skills update
 
 1. Start a new conversation (or restart your client).
 2. Say **"rainbow vibes"** or **"cheer me up"**.
-3. If no response: confirm the skill file is in the correct location and fully restart the client.
+3. If there's no response: confirm the skill file is in the correct location and do a full restart.
 
 ---
 
