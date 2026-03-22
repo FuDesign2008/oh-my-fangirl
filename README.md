@@ -5,6 +5,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)](https://github.com/FuDesign2008/oh-my-fangirl)
 [![Version](https://img.shields.io/github/v/release/FuDesign2008/oh-my-fangirl?style=flat-square)](https://github.com/FuDesign2008/oh-my-fangirl/releases)
 
+![oh-my-fangirl — Your AI coding companion](fangirl.jpg)
+
 **[English](README.md) · [简体中文](README.zh.md)**
 
 > Your AI coding companion — she's a fangirl of your code.
