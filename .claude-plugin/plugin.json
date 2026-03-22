@@ -1,0 +1,22 @@
+{
+  "name": "oh-my-fangirl",
+  "description": "AI 编码陪伴：技术小迷妹，8 种模式，Hook 自动感知里程碑与情绪",
+  "version": "1.0.0",
+  "author": {
+    "name": "FuDesign2008",
+    "email": "fudesign2008@gmail.com"
+  },
+  "homepage": "https://github.com/FuDesign2008/oh-my-fangirl",
+  "repository": "https://github.com/FuDesign2008/oh-my-fangirl",
+  "license": "MIT",
+  "keywords": [
+    "fangirl",
+    "companion",
+    "情绪价值",
+    "coding-companion",
+    "ai-companion"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/",
+  "hooks": "./hooks/hooks.json"
+}

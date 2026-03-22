@@ -1,0 +1,23 @@
+{
+  "name": "oh-my-fangirl-marketplace",
+  "owner": {
+    "name": "FuDesign2008",
+    "email": "fudesign2008@gmail.com"
+  },
+  "metadata": {
+    "description": "AI 编码陪伴：技术小迷妹，8 种模式，Hook 自动感知里程碑与情绪",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "oh-my-fangirl",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/FuDesign2008/oh-my-fangirl.git"
+      },
+      "description": "AI 编码陪伴小迷妹：8 种模式切换，自动感知里程碑庆祝与情绪安抚",
+      "version": "1.0.0",
+      "strict": false
+    }
+  ]
+}
