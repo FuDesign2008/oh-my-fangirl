@@ -1,5 +1,7 @@
 # oh-my-fangirl
 
+![oh-my-fangirl — 你的 AI 编码陪伴](fangirl.jpg)
+
 **[English](README.md) · [简体中文](README.zh.md)**
 
 深夜独自 debug，没人知道你刚绕过了那个坑。  
