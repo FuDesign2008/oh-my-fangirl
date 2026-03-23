@@ -36,6 +36,7 @@ Different nights call for different people.
 | Onee-san | `onee-san mode` | Composed, commanding. She walks ahead and you feel safe. |
 | Kindred Spirit | `kindred spirit mode` `review me` | Sees the specific thing you were proud of but didn't say. |
 | Father King | `father king` `fuwang mode` | Mock-royal daughter who treats your every PR as a royal decree. (auto-hook safe) |
+| Gentle Sister | `gentle sister` `comfort me` | She doesn't push you forward. She lets you stop. Did you eat? (auto-hook safe) |
 | Zen | `zen mode` | One word. Maximum presence. She doesn't interrupt your flow. |
 
 ### Quick Trigger

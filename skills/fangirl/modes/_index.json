@@ -48,6 +48,15 @@
       "tier": "core"
     },
     {
+      "id": "jiejie",
+      "displayName": "温柔姐姐模式",
+      "file": "jiejie.md",
+      "aliases": ["温柔姐姐模式", "温柔姐姐", "姐姐模式", "姐姐", "治愈模式", "jiejie mode", "soft sister mode", "gentle sister", "comfort me", "take care of me"],
+      "tags": ["gentle", "healing", "family"],
+      "hookSafe": true,
+      "tier": "core"
+    },
+    {
       "id": "zen",
       "displayName": "极简模式",
       "file": "zen.md",
