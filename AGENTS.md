@@ -41,7 +41,7 @@ oh-my-fangirl/
 ## Skill — fangirl
 
 - **目录**：`skills/fangirl/`
-- **模式数**：6 种（core × 5 + extended × 1）
+- **模式数**：7 种（core × 6 + extended × 1）
 - **模式索引**：`skills/fangirl/modes/_index.json`
 - **新增模式**：在 `modes/` 新增 `.md` 并在 `_index.json` 登记
 
