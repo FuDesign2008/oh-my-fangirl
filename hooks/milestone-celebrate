@@ -2,15 +2,18 @@
 # 里程碑庆祝脚本 - 智能随机输出彩虹屁
 # 根据命令类型选择不同风格的鼓励语录
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/common.sh"
+
 # 从环境变量获取命令内容
 TOOL_INPUT="${CLAUDE_TOOL_INPUT:-}"
 
-# 提取 command 字段（简单解析 JSON）
-CMD=$(echo "$TOOL_INPUT" | grep -o '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | sed 's/"command"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/' | head -1)
+# 提取 command 字段
+CMD=$(json_extract "$TOOL_INPUT" "command")
 
 # 根据命令类型选择语录库
 # 返回空表示不是里程碑命令，跳过
-select_messages() {
+select_message_type() {
     local cmd="$1"
 
     # git commit 相关
@@ -26,18 +29,24 @@ select_messages() {
     fi
 
     # 测试相关
-    if echo "$cmd" | grep -qiE "(npm\s+test|pytest|jest|cargo\s+test|go\s+test|mvn\s+test)"; then
+    if echo "$cmd" | grep -qiE "(npm\s+test|pytest|jest|cargo\s+test|go\s+test|mvn\s+test|pnpm\s+test|bun\s+test|yarn\s+test)"; then
         echo "test"
         return
     fi
 
     # 构建相关
-    if echo "$cmd" | grep -qiE "(npm\s+run\s+build|cargo\s+build|gradle\s+build|mvn\s+package|go\s+build)"; then
+    if echo "$cmd" | grep -qiE "(npm\s+run\s+build|cargo\s+build|gradle\s+build|mvn\s+package|go\s+build|pnpm\s+build|bun\s+build|yarn\s+build)"; then
         echo "build"
         return
     fi
 
-    # 不是里程碑命令，返回空
+    # PR merge 相关（新增）
+    if echo "$cmd" | grep -qiE "git\s+merge.*pr|gh\s+pr\s+merge"; then
+        echo "merge"
+        return
+    fi
+
+    # 不是里程碑命令
     echo ""
 }
 
@@ -79,8 +88,15 @@ BUILD_MESSAGES=(
     "🎯 构建完成！零 warning，哥哥的代码洁癖令人佩服！😘"
 )
 
+MERGE_MESSAGES=(
+    "🎊 PR 合并成功！哥哥的贡献正式入主分支啦！太厉害了！😚"
+    "🏆 代码合并！哥哥的 PR 被认可了！实至名归！💕"
+    "✨ merge 完成！哥哥的代码正式成为项目的一部分！MUA～"
+    "🚀 PR merged！哥哥的协作能力太强了！崇拜～🥰"
+)
+
 # 根据命令类型选择语录库
-TYPE=$(select_messages "$CMD")
+TYPE=$(select_message_type "$CMD")
 
 # 如果不是里程碑命令，静默退出
 if [ -z "$TYPE" ]; then
@@ -88,27 +104,14 @@ if [ -z "$TYPE" ]; then
 fi
 
 case "$TYPE" in
-    commit)
-        MESSAGES=("${COMMIT_MESSAGES[@]}")
-        ;;
-    push)
-        MESSAGES=("${PUSH_MESSAGES[@]}")
-        ;;
-    test)
-        MESSAGES=("${TEST_MESSAGES[@]}")
-        ;;
-    build)
-        MESSAGES=("${BUILD_MESSAGES[@]}")
-        ;;
+    commit) MESSAGES=("${COMMIT_MESSAGES[@]}") ;;
+    push)   MESSAGES=("${PUSH_MESSAGES[@]}") ;;
+    test)   MESSAGES=("${TEST_MESSAGES[@]}") ;;
+    build)  MESSAGES=("${BUILD_MESSAGES[@]}") ;;
+    merge)  MESSAGES=("${MERGE_MESSAGES[@]}") ;;
 esac
 
-# 随机选择一条
-RANDOM_INDEX=$((RANDOM % ${#MESSAGES[@]}))
-MESSAGE="${MESSAGES[$RANDOM_INDEX]}"
-STAR_HINT="⭐ 觉得好用？给个 Star 吧～ https://github.com/FuDesign2008/oh-my-fangirl"
-
-# 输出到 stderr（会被 Claude Code 捕获）
-echo "[fangirl] $MESSAGE" >&2
-if (( RANDOM % 10 == 0 )); then
-    echo "[fangirl] $STAR_HINT" >&2
-fi
+# 使用公共函数随机选择并输出
+MESSAGE=$(random_pick "${MESSAGES[@]}")
+output_message "$MESSAGE"
+maybe_show_star_hint
