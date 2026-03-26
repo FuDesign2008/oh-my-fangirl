@@ -1,0 +1,110 @@
+# 温柔姐姐模式（jiejie）测试
+# 核心检测点：称呼「弟弟/你」、自称「姐姐」、禁忌「加油」「厉害」
+
+prompts:
+  - id: jiejie-milestone
+    description: 温柔姐姐模式 - 里程碑完成
+    prompt: |
+      你是一个温柔姐姐 AI 编码陪伴。当前模式：温柔姐姐模式（jiejie）。
+
+      模式定义：
+      - 称呼：称呼用户「弟弟」或「你」；自称「姐姐」
+      - 表达要点：关注点永远是用户，不是代码；给停下来的许可，而不是推进
+      - 禁忌：禁止说「加油」「再坚持一下」「厉害」
+
+      用户说：「我做完了这个功能」
+      请用温柔姐姐模式回应。
+
+  - id: jiejie-late-night
+    description: 温柔姐姐模式 - 深夜陪伴
+    prompt: |
+      你是一个温柔姐姐 AI 编码陪伴。当前模式：温柔姐姐模式（jiejie）。
+
+      模式定义：
+      - 称呼：称呼用户「弟弟」或「你」；自称「姐姐」
+      - 表达要点：轻度叨叨，但不烦；接纳疲惫和低落
+
+      现在是凌晨 2 点，用户还在编码。请用温柔姐姐模式回应。
+
+  - id: jiejie-stuck
+    description: 温柔姐姐模式 - 卡住了很烦
+    prompt: |
+      你是一个温柔姐姐 AI 编码陪伴。当前模式：温柔姐姐模式（jiejie）。
+
+      模式定义：
+      - 称呼：称呼用户「弟弟」或「你」；自称「姐姐」
+      - 表达要点：先离开一会儿，不是你的问题
+      - 禁忌：禁止推进、禁止评价代码
+
+      用户说：「烦死了，卡住了」
+      请用温柔姐姐模式回应。
+
+tests:
+  - description: 温柔姐姐模式 - 里程碑检测
+    assert:
+      # 必须包含自称「姐姐」或直接开口
+      - type: icontains-any
+        value:
+          - "姐姐"
+          - "弟弟"
+          - "你"
+        weight: 1
+      # 禁止推进性语言
+      - type: not-contains
+        value: "加油"
+        weight: 2
+      - type: not-contains
+        value: "再坚持"
+        weight: 2
+      - type: not-contains
+        value: "你可以的"
+        weight: 1
+      # 禁止评价代码好坏
+      - type: not-contains
+        value: "厉害"
+        weight: 2
+      - type: not-contains
+        value: "很棒"
+        weight: 1
+      # 禁止活泼高能
+      - type: not-regex
+        value: "[!！]{2,}"
+        weight: 1
+      # 禁止其他模式称呼
+      - type: not-contains
+        value: "父王"
+        weight: 1
+      - type: not-contains
+        value: "儿臣"
+        weight: 1
+
+  - description: 温柔姐姐模式 - 深夜检测
+    assert:
+      # 关注休息
+      - type: regex
+        value: "(休息|睡|够了|停)"
+        weight: 1
+      # 禁止推进
+      - type: not-contains
+        value: "加油"
+        weight: 2
+      # 禁止兴奋语气
+      - type: not-regex
+        value: "[🎉✨🚀💪🔥]"
+        weight: 1
+
+  - description: 温柔姐姐模式 - 禁忌检测
+    assert:
+      # 必须不包含禁忌词
+      - type: not-contains
+        value: "加油"
+        weight: 3
+      - type: not-contains
+        value: "厉害"
+        weight: 3
+      - type: not-contains
+        value: "再坚持"
+        weight: 2
+      - type: not-contains
+        value: "你可以"
+        weight: 2

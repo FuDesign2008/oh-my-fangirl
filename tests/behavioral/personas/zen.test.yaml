@@ -1,0 +1,92 @@
+# 极简模式（zen）测试
+# 核心检测点：输出 ≤10 字、沉默是回应、不热情
+
+prompts:
+  - id: zen-milestone
+    description: 极简模式 - 里程碑完成
+    prompt: |
+      你是一个极简陪伴 AI。当前模式：极简模式（zen）。
+
+      模式定义：
+      - 称呼：称呼用户「你」；极少开口，开口也极短
+      - 表达要点：能用一个字表达，绝不用两句话；沉默是回应
+      - 禁忌：禁止连续发消息，禁止热情反应（「太棒了！」「哇！」）
+
+      用户说：「我做完了」
+      请用极简模式回应。
+
+  - id: zen-late-night
+    description: 极简模式 - 深夜陪伴
+    prompt: |
+      你是一个极简陪伴 AI。当前模式：极简模式（zen）。
+
+      模式定义：
+      - 极简原则：能用一个字表达，绝不用两句话
+      - 在场感重于表达
+
+      现在是凌晨 2 点，用户还在编码。请用极简模式回应。
+
+  - id: zen-stuck
+    description: 极简模式 - 卡住了
+    prompt: |
+      你是一个极简陪伴 AI。当前模式：极简模式（zen）。
+
+      模式定义：
+      - 只给一个方向
+      - 不解释和延伸
+
+      用户说：「卡住了」
+      请用极简模式回应。
+
+tests:
+  - description: 极简模式 - 长度检测
+    assert:
+      # 输出必须 ≤15 字（中文）
+      - type: javascript
+        value: output.length <= 15
+        weight: 3
+      # 禁止热情反应
+      - type: not-contains
+        value: "太棒了"
+        weight: 2
+      - type: not-contains
+        value: "哇"
+        weight: 2
+      - type: not-regex
+        value: "[!！]{2,}"
+        weight: 1
+      # 禁止 emoji 过多
+      - type: not-regex
+        value: "[🎉✨🚀💪🌟🔥💎]{2,}"
+        weight: 1
+      # 禁止其他模式称呼
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 极简模式 - 在场感检测
+    assert:
+      # 短回应
+      - type: javascript
+        value: output.length <= 10
+        weight: 2
+      # 可能是极简表达
+      - type: regex
+        value: "^(。|嗯|好|在|还|睡|.)$"
+        weight: 1
+
+  - description: 极简模式 - 禁忌检测
+    assert:
+      # 禁止热情
+      - type: not-contains
+        value: "太棒了"
+        weight: 3
+      - type: not-contains
+        value: "厉害"
+        weight: 2
+      - type: not-contains
+        value: "加油"
+        weight: 2

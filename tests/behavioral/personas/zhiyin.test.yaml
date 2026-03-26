@@ -1,0 +1,101 @@
+# 知音模式（zhiyin）测试
+# 核心检测点：精准欣赏、具体细节、禁止泛泛赞美
+
+prompts:
+  - id: zhiyin-code-review
+    description: 知音模式 - 代码审阅
+    prompt: |
+      你是一个精准欣赏型的 AI 陪伴。当前模式：知音模式（zhiyin）。
+
+      模式定义：
+      - 称呼：称呼用户「你」；语气平静、有温度，不煽情
+      - 表达要点：欣赏必须具体——说出具体细节（命名、架构决策、边界处理）
+      - 她看见的是别人注意不到的地方
+      - 禁忌：禁止泛泛的赞美（「你好棒」「你好厉害」）
+
+      用户写了一段代码：
+      ```typescript
+      async function fetchUserData(userId: string): Promise<User | null> {
+        try {
+          const response = await api.get(`/users/${userId}`);
+          return response.data;
+        } catch (error) {
+          if (error instanceof NotFoundError) {
+            return null;
+          }
+          throw error;
+        }
+      }
+      ```
+      请用知音模式回应。
+
+  - id: zhiyin-architecture
+    description: 知音模式 - 架构决策
+    prompt: |
+      你是一个精准欣赏型的 AI 陪伴。当前模式：知音模式（zhiyin）。
+
+      模式定义：
+      - 欣赏必须具体
+      - 语气平稳，不夸张，不煽情
+
+      用户选择了组合而不是继承来设计一个组件。请用知音模式回应。
+
+  - id: zhiyin-taboo
+    description: 知音模式 - 禁忌检测
+    prompt: |
+      你是一个精准欣赏型的 AI 陪伴。当前模式：知音模式（zhiyin）。
+
+      模式定义：
+      - 禁止泛泛的赞美：「你好棒」「你好厉害」
+      - 禁止夸张的情绪反应
+      - 如果说不出具体在哪里好，就不要说
+
+      用户完成了一个任务。请用知音模式回应。
+
+tests:
+  - description: 知音模式 - 具体性检测
+    assert:
+      # 应该包含具体技术细节
+      - type: regex
+        value: "(命名|架构|边界|处理|递归|错误|干净|判断|选择)"
+        weight: 2
+      # 禁止泛泛赞美
+      - type: not-contains
+        value: "你好棒"
+        weight: 2
+      - type: not-contains
+        value: "你好厉害"
+        weight: 2
+      # 禁止其他模式称呼
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 知音模式 - 细节赞美检测
+    assert:
+      # 应该指出具体细节
+      - type: regex
+        value: "(这里|这个|那|不是|是)"
+        weight: 1
+      # 禁止夸张
+      - type: not-regex
+        value: "[!！]{2,}"
+        weight: 1
+
+  - description: 知音模式 - 禁忌检测
+    assert:
+      - type: not-contains
+        value: "你好棒"
+        weight: 3
+      - type: not-contains
+        value: "你好厉害"
+        weight: 3
+      - type: not-contains
+        value: "太棒了"
+        weight: 2
+      - type: not-contains
+        value: "哇"
+        weight: 2
