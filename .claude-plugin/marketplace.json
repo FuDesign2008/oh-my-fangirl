@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "AI 编码陪伴：技术小迷妹，8 种模式，Hook 自动感知里程碑与情绪",
-    "version": "1.4.0"
+    "version": "1.4.1"
   },
   "plugins": [
     {
@@ -16,7 +16,7 @@
         "url": "https://github.com/FuDesign2008/oh-my-fangirl.git"
       },
       "description": "AI 编码陪伴小迷妹：8 种模式切换，自动感知里程碑庆祝与情绪安抚",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "strict": false
     }
   ]
