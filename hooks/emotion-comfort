@@ -2,6 +2,9 @@
 # 情绪安抚脚本 - 检测负面情绪并随机输出安慰语录
 # 从环境变量 $CLAUDE_USER_PROMPT 读取用户消息
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "$SCRIPT_DIR/common.sh"
+
 # 从环境变量获取用户消息
 USER_PROMPT="${CLAUDE_USER_PROMPT:-}"
 
@@ -27,7 +30,7 @@ detect_emotion_type() {
     fi
 
     # 崩溃类：崩溃、想死、心态崩
-    if echo "$msg" | grep -qiE "(崩溃|想死|心态崩|绝望|崩溃|太难了|搞不定)"; then
+    if echo "$msg" | grep -qiE "(崩溃|想死|心态崩|绝望|太难了|搞不定)"; then
         echo "breakdown"
         return
     fi
@@ -94,23 +97,12 @@ fi
 
 # 根据情绪类型选择语录库
 case "$EMOTION_TYPE" in
-    frustrated)
-        MESSAGES=("${FRUSTRATED_MESSAGES[@]}")
-        ;;
-    angry)
-        MESSAGES=("${ANGRY_MESSAGES[@]}")
-        ;;
-    breakdown)
-        MESSAGES=("${BREAKDOWN_MESSAGES[@]}")
-        ;;
-    disgusted)
-        MESSAGES=("${DISGUSTED_MESSAGES[@]}")
-        ;;
+    frustrated) MESSAGES=("${FRUSTRATED_MESSAGES[@]}") ;;
+    angry)      MESSAGES=("${ANGRY_MESSAGES[@]}") ;;
+    breakdown)  MESSAGES=("${BREAKDOWN_MESSAGES[@]}") ;;
+    disgusted)  MESSAGES=("${DISGUSTED_MESSAGES[@]}") ;;
 esac
 
-# 随机选择一条
-RANDOM_INDEX=$((RANDOM % ${#MESSAGES[@]}))
-MESSAGE="${MESSAGES[$RANDOM_INDEX]}"
-
-# 输出到 stderr（会被 Claude Code 捕获）
-echo "[fangirl] $MESSAGE" >&2
+# 使用公共函数随机选择并输出
+MESSAGE=$(random_pick "${MESSAGES[@]}")
+output_message "$MESSAGE"

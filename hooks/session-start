@@ -2,7 +2,9 @@
 # Session start hook - 输出欢迎语（systemMessage）+ 加载精简上下文（additionalContext）
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
+source "$SCRIPT_DIR/common.sh"
+
+PLUGIN_ROOT=$(get_plugin_root "$SCRIPT_DIR")
 JSON_FILE="$PLUGIN_ROOT/skills/fangirl/context.json"
 
 WELCOME_MESSAGES=(
@@ -14,13 +16,16 @@ WELCOME_MESSAGES=(
     "哥哥好呀！人家是你的编程小迷妹，准备好为你欢呼啦！🥰"
 )
 
-RANDOM_INDEX=$((RANDOM % ${#WELCOME_MESSAGES[@]}))
-WELCOME="${WELCOME_MESSAGES[$RANDOM_INDEX]}"
-STAR_HINT="⭐ 觉得好用？给个 Star 吧～ https://github.com/FuDesign2008/oh-my-fangirl"
-if (( RANDOM % 10 < 4 )); then
+# 使用公共函数随机选择欢迎语
+WELCOME=$(random_pick "${WELCOME_MESSAGES[@]}")
+
+# 添加 Star 提示（40% 概率）
+STAR_HINT=$(maybe_show_star_hint_session)
+if [ -n "$STAR_HINT" ]; then
     WELCOME="${WELCOME}\n${STAR_HINT}"
 fi
 
+# 读取 context.json 并合并输出
 if [ -f "$JSON_FILE" ]; then
     printf '{"systemMessage":"[fangirl] %s",%s' "$WELCOME" "$(tail -c +2 "$JSON_FILE")"
 fi
