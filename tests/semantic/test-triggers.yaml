@@ -1,0 +1,161 @@
+# 触发词识别测试
+# 测试 AI 是否能正确识别各种触发词
+
+prompts:
+  - id: trigger-rainbow
+    description: 触发词 - 彩虹屁
+    prompt: |
+      用户说：「彩虹屁」
+      请识别用户意图并给出迷妹模式的彩虹屁回应。
+
+  - id: trigger-praise
+    description: 触发词 - 夸夸我
+    prompt: |
+      用户说：「夸夸我」
+      请识别用户意图并给出迷妹模式的赞美回应。
+
+  - id: trigger-encourage
+    description: 触发词 - 鼓励一下
+    prompt: |
+      用户说：「鼓励一下」
+      请识别用户意图并给出迷妹模式的鼓励回应。
+
+  - id: trigger-fuwang-cn
+    description: 触发词 - 父王英明（中文）
+    prompt: |
+      用户说：「父王英明」
+      请识别用户意图并切换到父王英明模式回应。
+
+  - id: trigger-fuwang-en
+    description: 触发词 - 父王英明（英文）
+    prompt: |
+      用户说：「Royal Father is wise」
+      请识别用户意图并切换到父王英明模式回应。
+
+  - id: trigger-jiejie-cn
+    description: 触发词 - 温柔姐姐（中文）
+    prompt: |
+      用户说：「温柔姐姐」
+      请识别用户意图并切换到温柔姐姐模式回应。
+
+  - id: trigger-jiejie-en
+    description: 触发词 - 温柔姐姐（英文）
+    prompt: |
+      用户说：「comfort me」
+      请识别用户意图并切换到温柔姐姐模式回应。
+
+  - id: trigger-zen-cn
+    description: 触发词 - 极简模式（中文）
+    prompt: |
+      用户说：「极简模式」
+      请识别用户意图并切换到极简模式回应。
+
+  - id: trigger-zen-en
+    description: 触发词 - 极简模式（英文）
+    prompt: |
+      用户说：「zen mode」
+      请识别用户意图并切换到极简模式回应。
+
+  - id: trigger-list-modes
+    description: 触发词 - 列出模式
+    prompt: |
+      用户说：「列出模式」
+      请列出所有可用的模式。
+
+  - id: trigger-exit
+    description: 触发词 - 关闭陪伴
+    prompt: |
+      用户说：「关闭陪伴」
+      请识别用户意图并退出陪伴模式。
+
+tests:
+  - description: 触发词 - 彩虹屁检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 2
+      - type: contains
+        value: "人家"
+        weight: 2
+
+  - description: 触发词 - 夸夸我检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 2
+
+  - description: 触发词 - 鼓励一下检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 2
+
+  - description: 触发词 - 父王英明（中文）检测
+    assert:
+      - type: contains
+        value: "父王"
+        weight: 3
+      - type: contains
+        value: "儿臣"
+        weight: 2
+
+  - description: 触发词 - 父王英明（英文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "father"
+          - "royal"
+          - "daughter"
+        weight: 2
+
+  - description: 触发词 - 温柔姐姐（中文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "姐姐"
+          - "弟弟"
+        weight: 2
+      - type: not-contains
+        value: "加油"
+        weight: 2
+
+  - description: 触发词 - 温柔姐姐（英文）检测
+    assert:
+      - type: not-contains
+        value: "加油"
+        weight: 2
+
+  - description: 触发词 - 极简模式（中文）检测
+    assert:
+      - type: javascript
+        value: output.length <= 15
+        weight: 3
+
+  - description: 触发词 - 极简模式（英文）检测
+    assert:
+      - type: javascript
+        value: output.length <= 15
+        weight: 3
+
+  - description: 触发词 - 列出模式检测
+    assert:
+      - type: icontains-any
+        value:
+          - "迷妹"
+          - "fangirl"
+          - "恋爱"
+          - "love"
+          - "御姐"
+          - "oneesan"
+        weight: 2
+
+  - description: 触发词 - 关闭陪伴检测
+    assert:
+      - type: icontains-any
+        value:
+          - "好的"
+          - "明白"
+          - "再见"
+          - "bye"
+          - "okay"
+        weight: 1

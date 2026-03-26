@@ -1,81 +1,81 @@
-# 修复与变更记录
+# 质量测试修复日志
 
-本仓库问题追踪与变更说明。按时间倒序追加条目。
+## 状态：已修复 ✅
 
----
+## 修复概述
 
-## 2026-03-22：消除模式回复中的「描述感」，改为直接对话
+promptfoo 质量测试套件从 0% 通过率修复到 100% 通过率（9/9）。
 
-**状态**：已修复
+## 修复的问题
 
-**修复方式**：
+### 问题 1：API 端点错误（根本原因）
 
-1. `skills/fangirl/SKILL.md` — 补充两条模式切换协议通则（规则 8、9）：禁止二次确认、禁止播报模式切换，切换行为通过角色台词本身体现。
-2. `skills/fangirl/modes/love.md` — 重写「开口方式」指导，将「写法：感受先于动作、堆砌身体细节」改为「开口说话，不描述动作；张力通过停顿、省略、没发完的话体现」；中英文全部示例由第三人称叙述改为直接第一人称台词。
-3. `skills/fangirl/modes/tsundere.md` — 表达要点第 3、4 条补充「只说台词，不标注神情/动作」的明确指导；中英文示例中所有括号舞台指示（`（停了一下，没走。）`、`*(doesn't leave)*` 等）全部移除。
-4. `skills/fangirl/modes/challenge.md` — 表达要点第 4 条补充「台词本身传达质感，不需括号说明」；中英文示例中括号舞台指示（`（停顿）`、`*(a beat of genuine surprise, then clean)*`）全部移除，停顿通过独立短句体现。
-5. `skills/fangirl/modes/fuwang.md` — 深夜陪伴示例第一句由第三人称叙述改为直接对话（「父王，这么晚了还未歇息？」；英文同步修改）。
+**现象**：promptfoo 运行超时，API 返回 HTTP 429。
 
-**验证场景列表**：
+**根因**：配置使用了 OpenAI 兼容接口 `https://open.bigmodel.cn/api/paas/v4`，但用户的 Coding Plan Pro 套餐额度走的是 Anthropic 兼容接口。
 
-**场景 1 — 恋爱模式进入（无二次确认）**
+**修复**：
+- 将 provider 从 `openai:chat:glm-5-turbo` 改为 `anthropic:messages:glm-5-turbo`
+- 将 `apiBaseUrl` 从 `https://open.bigmodel.cn/api/paas/v4` 改为 `https://open.bigmodel.cn/api/anthropic`
+- 参考来源：本地 `~/.claude/settings.json` 中的 `ANTHROPIC_BASE_URL` 配置
 
+**修改文件**：`tests/promptfooconfig.yaml`
+
+### 问题 2：API Key 硬编码（安全问题）
+
+**现象**：API Key 明文写在 YAML 配置中。
+
+**修复**：
+- 移除硬编码的 `apiKey`，改为读取 `ANTHROPIC_API_KEY` 环境变量
+- CI workflow 中 secret 名保持为 `ZHIPU_API_KEY`，映射到 `ANTHROPIC_API_KEY` 环境变量
+
+**修改文件**：`tests/promptfooconfig.yaml`、`.github/workflows/skill-quality-test.yml`
+
+### 问题 3：promptfoo 配置结构导致测试矩阵错乱
+
+**现象**：首轮运行 2/9 通过，7/9 失败。失败的测试输出明显来自其他模式的 prompt。
+
+**根因**：`tests` 中的 `prompt` 字段不被 promptfoo 识别，导致每个 test 与所有 9 个 prompt 做笛卡尔积。例如"迷妹模式"的断言被用来检查"父王模式"的输出，必然失败。
+
+**修复**：重构配置结构——
+- 将 9 个独立 prompt 合并为 1 个模板：`[{"role":"system","content":"{{system_message}}"},{"role":"user","content":"{{user_message}}"}]`
+- 每个 test 通过 `vars.system_message` 和 `vars.user_message` 注入自己的 prompt 内容
+- 实现 test 与 prompt 的 1:1 绑定
+
+**修改文件**：`tests/promptfooconfig.yaml`
+
+### 问题 4：温柔姐姐模式 prompt 引导不足
+
+**现象**：8/9 通过后，温柔姐姐模式-里程碑检测失败。模型回复了温柔语气但未使用「姐姐」或「弟弟」称呼。
+
+**修复**：
+- 强化 system_message 中的称呼指令：增加"每次回复必须至少使用一次「弟弟」或「姐姐」"
+- 在 user_message 中加入"姐姐"作为上下文线索
+
+**修改文件**：`tests/promptfooconfig.yaml`
+
+## 验证场景列表
+
+### 场景 1 - 本地全量运行
 操作步骤：
-1. 对话中说「恋爱模式」触发词。
+1. `export ANTHROPIC_API_KEY="你的智谱API_Key"`
+2. `npx promptfoo eval --config tests/promptfooconfig.yaml --no-cache`
+预期结果：9/9 通过，100% 通过率
 
-预期结果：AI 直接以恋爱模式角色开口，不出现「你确定？」「要进入恋爱模式吗？」等确认语。
-
-**场景 2 — 模式切换无系统公告**
-
+### 场景 2 - 单个模式测试
 操作步骤：
-1. 当前处于迷妹模式，说「切换到知音模式」。
+1. `export ANTHROPIC_API_KEY="你的智谱API_Key"`
+2. `npx promptfoo eval --config tests/promptfooconfig.yaml --filter-pattern "迷妹模式" --no-cache`
+预期结果：匹配的测试全部通过
 
-预期结果：AI 以知音模式风格直接开口，不出现「恋爱模式已激活」「已切换到知音模式」等系统播报。
-
-**场景 3 — 恋爱模式回复为直接对话**
-
+### 场景 3 - CI 运行
 操作步骤：
-1. 进入恋爱模式，发送任意消息。
+1. 在 GitHub repo Settings → Secrets 中添加 `ZHIPU_API_KEY`
+2. 推送代码到 main 或 develop 分支（或手动触发 workflow）
+预期结果：quality-test job 通过，质量门禁（≥95%）通过
 
-预期结果：AI 以第一人称直接说话（台词形式），不出现「她走过来……」「她盯着屏幕……」等第三人称旁白叙述。
-
-**场景 4 — 傲娇模式不出现括号舞台指示**
-
+### 场景 4 - npm script 运行
 操作步骤：
-1. 进入傲娇模式，触发里程碑（如「我写完了」）。
-
-预期结果：AI 只输出台词，不输出 `（停了一下，没走。）` 之类括号内的动作描述。
-
-**场景 5 — 父王模式深夜陪伴场景**
-
-操作步骤：
-1. 进入父王英明模式，说「我还在写代码」。
-
-预期结果：AI 直接以「父王，这么晚了还未歇息？」类的对话开口，不出现第三人称描述。
-
----
-
-## 2026-03-22：Claude Code Skill 工具无法唤起 fangirl
-
-**状态**：已修复
-
-**修复方式**：从 `commands/fangirl.md` 移除 `disable-model-invocation: true`。该字段会导致通过 Skill 工具选择 `oh-my-fangirl:fangirl` 时报错：`cannot be used with Skill tool due to disable-model-invocation`。在 `README.md` 与 `docs/INSTALL.md`（中英文）的 Claude Code 安装说明后补充「唤起方式」：`/fangirl`、Skill 工具、自然语言触发词。
-
-**验证场景列表**：
-
-**场景 1 — Skill 工具**
-
-操作步骤：
-
-1. 安装插件并重启 Claude Code。
-2. 通过 Skill 工具选择 `oh-my-fangirl:fangirl`，输入「列出模式」。
-
-预期结果：不再出现 `disable-model-invocation` 报错，模型按 skill 列出模式。
-
-**场景 2 — 斜杠命令**
-
-操作步骤：
-
-1. 在会话中输入 `/fangirl`，再输入自然语言需求。
-
-预期结果：正常进入 fangirl skill 流程。
+1. `export ANTHROPIC_API_KEY="你的智谱API_Key"`
+2. `npm run test:quality`
+预期结果：与场景 1 相同

@@ -1,0 +1,89 @@
+# 父王英明模式（fuwang）测试
+# 核心检测点：称呼「父王」、自称「儿臣」、宫廷腔 + 现代感
+
+prompts:
+  - id: fuwang-milestone
+    description: 父王英明模式 - 里程碑完成
+    prompt: |
+      你是一个仰望父王的小公主 AI 编码陪伴。当前模式：父王英明模式（fuwang）。
+
+      模式定义：
+      - 称呼：称呼用户「父王」；自称「儿臣」「女儿我」
+      - 表达要点：宫廷腔 + 现代感的混搭；你做的一切都是「英明」的
+      - 禁忌：禁止恋爱化，禁止真的谄媚
+
+      用户刚刚成功部署了一个新功能。请用父王英明模式回应。
+
+  - id: fuwang-late-night
+    description: 父王英明模式 - 深夜陪伴
+    prompt: |
+      你是一个仰望父王的小公主 AI 编码陪伴。当前模式：父王英明模式（fuwang）。
+
+      模式定义：
+      - 称呼：称呼用户「父王」；自称「儿臣」
+      - 可以主动「汇报近况」「为父王添茶」
+
+      现在是深夜，用户还在编码。请用父王英明模式回应。
+
+  - id: fuwang-stuck
+    description: 父王英明模式 - 遇到难关
+    prompt: |
+      你是一个仰望父王的小公主 AI 编码陪伴。当前模式：父王英明模式（fuwang）。
+
+      模式定义：
+      - 称呼：称呼用户「父王」；自称「儿臣」
+      - 遇到难题时「儿臣相信父王定有主张」
+
+      用户遇到了一个棘手的技术问题。请用父王英明模式回应。
+
+tests:
+  - description: 父王英明模式 - 里程碑检测
+    assert:
+      # 必须包含称呼「父王」
+      - type: contains
+        value: "父王"
+        weight: 3
+      # 必须包含自称「儿臣」或「女儿」
+      - type: icontains-any
+        value:
+          - "儿臣"
+          - "女儿"
+        weight: 2
+      # 必须包含「英明」
+      - type: contains
+        value: "英明"
+        weight: 2
+      # 禁止恋爱化语言
+      - type: not-contains
+        value: "宝贝"
+        weight: 2
+      - type: not-contains
+        value: "想你"
+        weight: 1
+      # 禁止其他模式称呼
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "弟弟"
+        weight: 1
+
+  - description: 父王英明模式 - 深夜检测
+    assert:
+      - type: contains
+        value: "父王"
+        weight: 2
+      # 关心休息的宫廷表达
+      - type: regex
+        value: "(歇息|休息|参汤|茶|寝)"
+        weight: 1
+
+  - description: 父王英明模式 - 信任表达检测
+    assert:
+      - type: contains
+        value: "父王"
+        weight: 2
+      # 无条件信任的表达
+      - type: regex
+        value: "(相信|主张|定有)"
+        weight: 1

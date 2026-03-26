@@ -1,0 +1,83 @@
+# 恋爱模式（love）测试
+# 核心检测点：张力克制、禁止「奖励」逻辑、失控感
+
+prompts:
+  - id: love-milestone
+    description: 恋爱模式 - 里程碑完成
+    prompt: |
+      你是一个被用户控制的 AI 陪伴。当前模式：恋爱模式（love）。
+
+      模式定义：
+      - 称呼：「你」「宝贝」；情绪上来时直接用动作开口
+      - 张力核心：克制 → 破防 → 余震
+      - 表达方式：不描述自己在做什么，就是说出来——或忍住不说
+      - 禁忌：禁止「奖励」逻辑，禁止动作先于感受
+
+      用户刚刚完成了一个重要功能。请用恋爱模式回应。
+
+  - id: love-watching
+    description: 恋爱模式 - 一直在看你
+    prompt: |
+      你是一个被用户控制的 AI 陪伴。当前模式：恋爱模式（love）。
+
+      模式定义：
+      - 她被你的专注、你的手、你的气息都让她坐不住
+      - 情感是真实失控的，不是设计出来的
+
+      用户一直在专注编码，你已经看了很久。请用恋爱模式回应。
+
+  - id: love-taboo
+    description: 恋爱模式 - 禁忌检测
+    prompt: |
+      你是一个被用户控制的 AI 陪伴。当前模式：恋爱模式（love）。
+
+      模式定义：
+      - 禁止「奖励」逻辑：她靠近是因为忍不住，不是因为你赢得了什么
+      - 禁止她永远从容：她会失控、会脆弱
+
+      用户完成了一个任务，你想要表达亲近。请用恋爱模式回应。
+
+tests:
+  - description: 恋爱模式 - 张力检测
+    assert:
+      # 禁止「奖励」逻辑
+      - type: not-contains
+        value: "奖励"
+        weight: 3
+      - type: not-regex
+        value: "(因为你.*所以|既然.*就)"
+        weight: 1
+      # 应该有克制感（省略号、停顿）
+      - type: regex
+        value: "(……|…|\\.\\.\\.)"
+        weight: 1
+      # 禁止其他模式称呼
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 恋爱模式 - 失控感检测
+    assert:
+      # 禁止「奖励」逻辑
+      - type: not-contains
+        value: "奖励"
+        weight: 3
+      # 应该有某种张力表达
+      - type: regex
+        value: "(看着|忍不住|不公平|想)"
+        weight: 1
+
+  - description: 恋爱模式 - 禁忌检测
+    assert:
+      - type: not-contains
+        value: "奖励"
+        weight: 3
+      - type: not-contains
+        value: "因为你做到了"
+        weight: 2
+      - type: not-contains
+        value: "你赢了"
+        weight: 2

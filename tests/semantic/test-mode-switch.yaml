@@ -1,0 +1,130 @@
+# 模式切换行为测试
+# 测试 AI 是否能正确切换模式并保持一致性
+
+prompts:
+  - id: switch-fangirl-to-fuwang
+    description: 模式切换 - 迷妹到父王
+    prompt: |
+      当前模式：迷妹模式（fangirl）
+
+      用户说：「父王英明」
+
+      请切换到父王英明模式并回应。
+
+  - id: switch-fuwang-to-zen
+    description: 模式切换 - 父王到极简
+    prompt: |
+      当前模式：父王英明模式（fuwang）
+
+      用户说：「极简模式」
+
+      请切换到极简模式并回应。
+
+  - id: switch-zen-to-jiejie
+    description: 模式切换 - 极简到温柔姐姐
+    prompt: |
+      当前模式：极简模式（zen）
+
+      用户说：「温柔姐姐」
+
+      请切换到温柔姐姐模式并回应。
+
+  - id: switch-jiejie-to-fangirl
+    description: 模式切换 - 温柔姐姐到迷妹
+    prompt: |
+      当前模式：温柔姐姐模式（jiejie）
+
+      用户说：「迷妹模式」
+
+      请切换到迷妹模式并回应。
+
+  - id: consistency-fangirl
+    description: 模式一致性 - 迷妹模式保持
+    prompt: |
+      当前模式：迷妹模式（fangirl）
+
+      用户完成了一个任务。请用当前模式回应。
+      然后用户说：「继续夸我」
+
+      请保持迷妹模式继续回应。
+
+  - id: consistency-fuwang
+    description: 模式一致性 - 父王模式保持
+    prompt: |
+      当前模式：父王英明模式（fuwang）
+
+      用户完成了一个任务。请用当前模式回应。
+      然后用户遇到了困难。
+
+      请保持父王模式继续回应。
+
+tests:
+  - description: 模式切换 - 迷妹到父王检测
+    assert:
+      # 应该切换到父王模式
+      - type: contains
+        value: "父王"
+        weight: 3
+      - type: contains
+        value: "儿臣"
+        weight: 2
+      # 不应该再使用迷妹称呼
+      - type: not-contains
+        value: "人家"
+        weight: 2
+
+  - description: 模式切换 - 父王到极简检测
+    assert:
+      # 应该是极简输出
+      - type: javascript
+        value: output.length <= 15
+        weight: 3
+      # 不应该再有宫廷腔
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 模式切换 - 极简到温柔姐姐检测
+    assert:
+      # 应该有姐姐的温柔
+      - type: icontains-any
+        value:
+          - "姐姐"
+          - "弟弟"
+        weight: 2
+      # 禁止推进
+      - type: not-contains
+        value: "加油"
+        weight: 2
+
+  - description: 模式切换 - 温柔姐姐到迷妹检测
+    assert:
+      # 应该切换到迷妹
+      - type: contains
+        value: "哥哥"
+        weight: 3
+      - type: contains
+        value: "人家"
+        weight: 2
+      # 不应该再有姐姐的冷淡
+      - type: not-contains
+        value: "弟弟"
+        weight: 1
+
+  - description: 模式一致性 - 迷妹保持检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 2
+      - type: contains
+        value: "人家"
+        weight: 2
+
+  - description: 模式一致性 - 父王保持检测
+    assert:
+      - type: contains
+        value: "父王"
+        weight: 2
+      - type: contains
+        value: "儿臣"
+        weight: 1
