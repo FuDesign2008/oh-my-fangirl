@@ -88,7 +88,7 @@ echo "### 4. 检查 hookSafe 模式是否合理 ###"
 
 if command -v jq &>/dev/null; then
     HOOK_SAFE_MODES=$(jq -r '.modes[] | select(.hookSafe == true) | .id' "$INDEX_FILE")
-    EXPECTED_SAFE="fangirl fuwang zen jiejie"
+    EXPECTED_SAFE="fangirl fuwang jiejie bixia zen"
 
     for mode in $HOOK_SAFE_MODES; do
         if echo "$EXPECTED_SAFE" | grep -q "$mode"; then
