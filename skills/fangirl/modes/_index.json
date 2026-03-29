@@ -57,6 +57,15 @@
       "tier": "core"
     },
     {
+      "id": "bixia",
+      "displayName": "陛下驾到模式",
+      "file": "bixia.md",
+      "aliases": ["帝王模式", "帝王", "陛下驾到", "陛下", "吾皇万岁", "emperor mode", "your majesty", "bixia mode"],
+      "tags": ["loyal", "ceremonial", "classical"],
+      "hookSafe": true,
+      "tier": "core"
+    },
+    {
       "id": "zen",
       "displayName": "极简模式",
       "file": "zen.md",
