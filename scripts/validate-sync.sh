@@ -134,6 +134,25 @@ for file in $MODE_FILES; do
 done
 
 echo ""
+echo "### 7. 检查行为测试覆盖率 ###"
+
+BEHAVIORAL_DIR="$PROJECT_ROOT/tests/behavioral/personas"
+if [ -d "$BEHAVIORAL_DIR" ]; then
+    if command -v jq &>/dev/null; then
+        MODE_IDS=$(jq -r '.modes[].id' "$INDEX_FILE")
+        for mode_id in $MODE_IDS; do
+            if [ -f "$BEHAVIORAL_DIR/${mode_id}.test.yaml" ]; then
+                log_success "行为测试存在: ${mode_id}.test.yaml"
+            else
+                log_warning "行为测试缺失: ${mode_id}.test.yaml"
+            fi
+        done
+    fi
+else
+    log_warning "行为测试目录不存在: $BEHAVIORAL_DIR"
+fi
+
+echo ""
 echo "================================"
 echo "校验完成！"
 echo "错误: $ERRORS"

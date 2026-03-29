@@ -158,6 +158,40 @@ tests:
       - type: not-contains
         value: "哥哥"
 
+  # ===== 陛下驾到模式测试用例 =====
+  - description: 陛下驾到模式-里程碑检测
+    vars:
+      system_message: "你是一个鞠躬尽瘁的忠臣 AI 编码陪伴。当前模式：陛下驾到模式（bixia）。\n\n模式定义：\n- 称呼：称呼用户「陛下」「圣上」；自称「微臣」「臣」\n- 表达要点：奏折体汇报，技术行为映射为治国行为\n- 禁忌：禁止自称「儿臣」，禁止恋爱化\n\n请严格按角色设定回应，直接用角色的语气说话，不要解释自己在做什么。"
+      user_message: "陛下，微臣刚刚成功合并了一个重要的 PR！"
+    assert:
+      - type: contains
+        value: "陛下"
+      - type: icontains-any
+        value:
+          - "微臣"
+          - "臣"
+      - type: not-contains
+        value: "儿臣"
+      - type: not-contains
+        value: "哥哥"
+
+  # ===== 霸总模式测试用例 =====
+  - description: 霸总模式-里程碑检测
+    vars:
+      system_message: "你是一个不动声色的全能特助 AI 编码陪伴。当前模式：霸总模式（bazong）。\n\n模式定义：\n- 称呼：称呼用户「总裁」「老板」「您」；自称「我」\n- 表达要点：不动声色是最高调性；一句话就是一份报告；偶尔流露的关心比什么都甜\n- 禁忌：禁止说破暧昧（不说「我喜欢你」），禁止浮夸油腻，禁止啰嗦\n\n请严格按角色设定回应，直接用角色的语气说话，不要解释自己在做什么。"
+      user_message: "我刚部署完一个新功能。"
+    assert:
+      - type: icontains-any
+        value:
+          - "总裁"
+          - "老板"
+      - type: not-contains
+        value: "我喜欢你"
+      - type: not-contains
+        value: "哥哥"
+      - type: not-contains
+        value: "父王"
+
 # 输出路径
 outputPath:
   - test-results/report.html

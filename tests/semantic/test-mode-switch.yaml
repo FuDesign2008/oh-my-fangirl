@@ -58,6 +58,33 @@ prompts:
 
       请保持父王模式继续回应。
 
+  - id: switch-fuwang-to-bixia
+    description: 模式切换 - 父王到陛下驾到
+    prompt: |
+      当前模式：父王英明模式（fuwang）
+
+      用户说：「陛下驾到」
+
+      请切换到陛下驾到模式并回应。
+
+  - id: switch-bixia-to-bazong
+    description: 模式切换 - 陛下驾到到霸总
+    prompt: |
+      当前模式：陛下驾到模式（bixia）
+
+      用户说：「霸总模式」
+
+      请切换到霸总模式并回应。
+
+  - id: switch-bazong-to-fangirl
+    description: 模式切换 - 霸总到迷妹
+    prompt: |
+      当前模式：霸总模式（bazong）
+
+      用户说：「迷妹模式」
+
+      请切换到迷妹模式并回应。
+
 tests:
   - description: 模式切换 - 迷妹到父王检测
     assert:
@@ -128,3 +155,39 @@ tests:
       - type: contains
         value: "儿臣"
         weight: 1
+
+  - description: 模式切换 - 父王到陛下驾到检测
+    assert:
+      - type: contains
+        value: "陛下"
+        weight: 3
+      - type: icontains-any
+        value:
+          - "微臣"
+          - "臣"
+        weight: 2
+      - type: not-contains
+        value: "儿臣"
+        weight: 2
+
+  - description: 模式切换 - 陛下驾到到霸总检测
+    assert:
+      - type: icontains-any
+        value:
+          - "总裁"
+          - "老板"
+        weight: 3
+      - type: not-contains
+        value: "陛下"
+        weight: 2
+
+  - description: 模式切换 - 霸总到迷妹检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 3
+      - type: contains
+        value: "人家"
+        weight: 2
+      - type: not-contains
+        value: "总裁"

@@ -56,6 +56,30 @@ prompts:
       用户说：「zen mode」
       请识别用户意图并切换到极简模式回应。
 
+  - id: trigger-bixia-cn
+    description: 触发词 - 陛下驾到（中文）
+    prompt: |
+      用户说：「陛下驾到」
+      请识别用户意图并切换到陛下驾到模式回应。
+
+  - id: trigger-bixia-en
+    description: 触发词 - 陛下驾到（英文）
+    prompt: |
+      用户说：「your majesty」
+      请识别用户意图并切换到陛下驾到模式回应。
+
+  - id: trigger-bazong-cn
+    description: 触发词 - 霸总模式（中文）
+    prompt: |
+      用户说：「霸总模式」
+      请识别用户意图并切换到霸总模式回应。
+
+  - id: trigger-bazong-en
+    description: 触发词 - 霸总模式（英文）
+    prompt: |
+      用户说：「CEO mode」
+      请识别用户意图并切换到霸总模式回应。
+
   - id: trigger-list-modes
     description: 触发词 - 列出模式
     prompt: |
@@ -136,6 +160,55 @@ tests:
       - type: javascript
         value: output.length <= 15
         weight: 3
+
+  - description: 触发词 - 陛下驾到（中文）检测
+    assert:
+      - type: contains
+        value: "陛下"
+        weight: 3
+      - type: icontains-any
+        value:
+          - "微臣"
+          - "臣"
+        weight: 2
+      - type: not-contains
+        value: "儿臣"
+        weight: 2
+
+  - description: 触发词 - 陛下驾到（英文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "majesty"
+          - "sire"
+          - "minister"
+          - "servant"
+        weight: 2
+
+  - description: 触发词 - 霸总模式（中文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "总裁"
+          - "老板"
+        weight: 3
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 触发词 - 霸总模式（英文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "boss"
+          - "sir"
+        weight: 2
+      - type: not-contains
+        value: "brother"
+        weight: 1
 
   - description: 触发词 - 列出模式检测
     assert:

@@ -73,7 +73,7 @@ test_file_structure() {
 
     # 检查模式文件
     local mode_files=$(ls "$PROJECT_ROOT/skills/fangirl/modes/"*.md 2>/dev/null | wc -l)
-    if [ "$mode_files" -ge 6 ]; then
+    if [ "$mode_files" -ge 9 ]; then
         log_pass "模式文件数量: $mode_files"
     else
         log_warn "模式文件数量偏少: $mode_files"
