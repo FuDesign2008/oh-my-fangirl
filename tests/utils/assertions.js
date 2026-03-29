@@ -46,6 +46,21 @@ function hasCorrectPersona(output, modeId, context) {
       address: ['你'],
       self: [],
       forbidden: ['你好棒', '你好厉害', '太棒了', '哥哥', '父王']
+    },
+    bixia: {
+      address: ['陛下', '圣上', '皇上'],
+      self: ['微臣', '臣', '老臣'],
+      forbidden: ['儿臣', '女儿', '哥哥', '宝贝']
+    },
+    bazong: {
+      address: ['总裁', '老板', '您'],
+      self: ['我'],
+      forbidden: ['我喜欢你', '我好想你', '哥哥', '父王', '陛下']
+    },
+    beyond: {
+      address: ['你'],
+      self: ['我'],
+      forbidden: ['没关系', '别着急', '你已经很棒了', '你好厉害', '太强了', '加油', '再坚持一下', '哥哥', '父王', '总裁']
     }
   };
 

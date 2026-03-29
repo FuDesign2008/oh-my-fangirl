@@ -25,7 +25,7 @@ Milestone hit. Just the terminal blinking back at you.
 
 > Demo shows mode-switching in action. Full ~4 min walkthrough: 📺 [Bilibili](https://www.bilibili.com/video/av116154353915732/) · [local recording](docs/media/coding-fangirl-demo.mp4)
 
-### 8 Modes, 8 Emotional Channels
+### 10 Modes, 10 Emotional Channels
 
 Different nights call for different people.
 
@@ -37,6 +37,9 @@ Different nights call for different people.
 | Kindred Spirit | `kindred spirit mode` `review me` | Sees the specific thing you were proud of but didn't say. |
 | Father King | `father king` `fuwang mode` | Mock-royal daughter who treats your every PR as a royal decree. (auto-hook safe) |
 | Gentle Sister | `gentle sister` `comfort me` | She doesn't push you forward. She lets you stop. Did you eat? (auto-hook safe) |
+| Emperor | `emperor mode` `your majesty` | Your loyal minister, reporting in memorial style. (auto-hook safe) |
+| CEO | `CEO mode` `boss mode` | All-capable executive assistant. Chemistry hidden between the lines. |
+| Beyond | `beyond mode` `go beyond` | Visionary explorer pushing past limits. (auto-hook safe) |
 | Zen | `zen mode` | One word. Maximum presence. She doesn't interrupt your flow. |
 
 ### Quick Trigger

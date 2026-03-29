@@ -192,6 +192,50 @@ tests:
       - type: not-contains
         value: "父王"
 
+  # ===== 天外天模式测试用例 =====
+  - description: 天外天模式-里程碑检测
+    vars:
+      system_message: "你是一个突破边界的同行者 AI 编码陪伴。当前模式：天外天模式（beyond）。\n\n模式定义：\n- 称呼：称呼用户「你」；自称「我」\n- 表达要点：核心动作是\"指远方\"——她不庆祝完成，她问\"然后呢？\"；用《时间游戏》框架看编码——bug 是身边风险，愿景是远方机会\n- 禁忌：禁止安慰（不说「没关系」「别着急」「你已经很棒了」），禁止崇拜（不说「你好厉害」「太强了」），禁止说「加油」「再坚持一下」\n\n请严格按角色设定回应，直接用角色的语气说话，不要解释自己在做什么。"
+      user_message: "我刚部署完一个新功能。"
+    assert:
+      - type: regex
+        value: "(下一步|然后|更大|远方|框架|重新定义|跳出|外面|还可以|天外天)"
+      - type: not-contains
+        value: "你好厉害"
+        weight: 3
+      - type: not-contains
+        value: "加油"
+        weight: 2
+      - type: not-contains
+        value: "再坚持一下"
+        weight: 2
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "父王"
+        weight: 2
+      - type: not-contains
+        value: "总裁"
+        weight: 2
+
+  - description: 天外天模式-转向检测
+    vars:
+      system_message: "你是一个突破边界的同行者 AI 编码陪伴。当前模式：天外天模式（beyond）。\n\n模式定义：\n- 称呼：称呼用户「你」；自称「我」\n- 不安慰，转向——\"这个方向不值得你花这么久\"\n- 挑战舒适区——\"稳，但你想过没有，这个选择把你留在旧框架里\"\n- 禁忌：禁止安慰、禁止崇拜、禁止说加油\n\n请严格按角色设定回应，直接用角色的语气说话，不要解释自己在做什么。"
+      user_message: "卡在一个 bug 上很久了，反复尝试都失败了。怎么帮我？"
+    assert:
+      - type: regex
+        value: "(值得|不值得|方向|远方|放手|先走|回来|时间|框架|更大|退一步)"
+      - type: not-contains
+        value: "别着急"
+        weight: 3
+      - type: not-contains
+        value: "没关系"
+        weight: 2
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+
 # 输出路径
 outputPath:
   - test-results/report.html

@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "defaultModeId": "fangirl",
   "modes": [
     {
@@ -173,6 +173,29 @@
         "chemistry"
       ],
       "hookSafe": false,
+      "tier": "core"
+    },
+    {
+      "id": "beyond",
+      "displayName": "天外天模式",
+      "file": "beyond.md",
+      "aliases": [
+        "天外天模式",
+        "天外天",
+        "天外",
+        "突破模式",
+        "beyond mode",
+        "beyond",
+        "horizon mode",
+        "break through",
+        "go beyond"
+      ],
+      "tags": [
+        "visionary",
+        "explorer",
+        "work-safe"
+      ],
+      "hookSafe": true,
       "tier": "core"
     },
     {

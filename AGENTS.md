@@ -41,7 +41,7 @@ oh-my-fangirl/
 ## Skill — fangirl
 
 - **目录**：`skills/fangirl/`
-- **模式数**：7 种（core × 6 + extended × 1）
+- **模式数**：10 种（core × 9 + extended × 1）
 - **模式索引**：`skills/fangirl/modes/_index.json`
 - **新增模式**：在 `modes/` 新增 `.md` 并在 `_index.json` 登记
 
@@ -67,9 +67,19 @@ oh-my-fangirl/
 
 ## 版本管理
 
-- 版本号在 `.claude-plugin/plugin.json` 和 `marketplace.json`
-- CI（`.github/workflows/release.yml`）自动递增
-- 规则：`feat:` → MINOR、`fix:` → PATCH、`BREAKING CHANGE` → MAJOR
+本项目存在多个独立的版本号，各自用途不同：
+
+| 文件 | 当前版本 | 含义 | 管理方式 |
+|------|---------|------|---------|
+| `.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json`、`.cursor-plugin/plugin.json` | 1.6.x | 插件发布版本 | CI 自动递增，禁止手动修改 |
+| `skills/fangirl/SKILL.md` frontmatter | 6.x.x | Skill 内容版本 | 手动管理，Skill 内容变更时递增 |
+| `skills/fangirl/modes/_index.json` | 4 | 模式索引格式版本 | 手动管理，索引结构变更时递增 |
+| `package.json` | 1.0.0 | 测试套件版本 | 不随插件递增，仅测试框架自身变更时更新 |
+
+CI（`.github/workflows/release.yml`）自动递增插件版本：
+- `feat:` → MINOR
+- `fix:` → PATCH
+- `BREAKING CHANGE` → MAJOR
 
 ## 验证命令
 
