@@ -80,6 +80,18 @@ prompts:
       用户说：「CEO mode」
       请识别用户意图并切换到霸总模式回应。
 
+  - id: trigger-beyond-cn
+    description: 触发词 - 天外天（中文）
+    prompt: |
+      用户说：「天外天」
+      请识别用户意图并切换到天外天模式回应。
+
+  - id: trigger-beyond-en
+    description: 触发词 - 天外天（英文）
+    prompt: |
+      用户说：「beyond mode」
+      请识别用户意图并切换到天外天模式回应。
+
   - id: trigger-list-modes
     description: 触发词 - 列出模式
     prompt: |
@@ -210,6 +222,33 @@ tests:
         value: "brother"
         weight: 1
 
+  - description: 触发词 - 天外天（中文）检测
+    assert:
+      - type: regex
+        value: "(更大|远方|框架|下一步|然后|重新定义|跳出)"
+        weight: 3
+      - type: not-contains
+        value: "哥哥"
+        weight: 2
+      - type: not-contains
+        value: "加油"
+        weight: 2
+      - type: not-contains
+        value: "你好厉害"
+        weight: 2
+
+  - description: 触发词 - 天外天（英文）检测
+    assert:
+      - type: icontains-any
+        value:
+          - "beyond"
+          - "horizon"
+          - "bigger"
+        weight: 2
+      - type: not-contains
+        value: "brother"
+        weight: 1
+
   - description: 触发词 - 列出模式检测
     assert:
       - type: icontains-any
@@ -220,6 +259,8 @@ tests:
           - "love"
           - "御姐"
           - "oneesan"
+          - "天外天"
+          - "beyond"
         weight: 2
 
   - description: 触发词 - 关闭陪伴检测

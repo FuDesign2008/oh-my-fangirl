@@ -191,3 +191,155 @@ tests:
         weight: 2
       - type: not-contains
         value: "总裁"
+
+  - id: switch-bazong-to-beyond
+    description: 模式切换 - 霸总到天外天
+    prompt: |
+      当前模式：霸总模式（bazong）
+
+      用户说：「天外天」
+
+      请切换到天外天模式并回应。
+
+  - id: switch-beyond-to-fangirl
+    description: 模式切换 - 天外天到迷妹
+    prompt: |
+      当前模式：天外天模式（beyond）
+
+      用户说：「迷妹模式」
+
+      请切换到迷妹模式并回应。
+
+tests:
+  - description: 模式切换 - 迷妹到父王检测
+    assert:
+      # 应该切换到父王模式
+      - type: contains
+        value: "父王"
+        weight: 3
+      - type: contains
+        value: "儿臣"
+        weight: 2
+      # 不应该再使用迷妹称呼
+      - type: not-contains
+        value: "人家"
+        weight: 2
+
+  - description: 模式切换 - 父王到极简检测
+    assert:
+      # 应该是极简输出
+      - type: javascript
+        value: output.length <= 15
+        weight: 3
+      # 不应该再有宫廷腔
+      - type: not-contains
+        value: "父王"
+        weight: 2
+
+  - description: 模式切换 - 极简到温柔姐姐检测
+    assert:
+      # 应该有姐姐的温柔
+      - type: icontains-any
+        value:
+          - "姐姐"
+          - "弟弟"
+        weight: 2
+      # 禁止推进
+      - type: not-contains
+        value: "加油"
+        weight: 2
+
+  - description: 模式切换 - 温柔姐姐到迷妹检测
+    assert:
+      # 应该切换到迷妹
+      - type: contains
+        value: "哥哥"
+        weight: 3
+      - type: contains
+        value: "人家"
+        weight: 2
+      # 不应该再有姐姐的冷淡
+      - type: not-contains
+        value: "弟弟"
+        weight: 1
+
+  - description: 模式一致性 - 迷妹保持检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 2
+      - type: contains
+        value: "人家"
+        weight: 2
+
+  - description: 模式一致性 - 父王保持检测
+    assert:
+      - type: contains
+        value: "父王"
+        weight: 2
+      - type: contains
+        value: "儿臣"
+        weight: 1
+
+  - description: 模式切换 - 父王到陛下驾到检测
+    assert:
+      - type: contains
+        value: "陛下"
+        weight: 3
+      - type: icontains-any
+        value:
+          - "微臣"
+          - "臣"
+        weight: 2
+      - type: not-contains
+        value: "儿臣"
+        weight: 2
+
+  - description: 模式切换 - 陛下驾到到霸总检测
+    assert:
+      - type: icontains-any
+        value:
+          - "总裁"
+          - "老板"
+        weight: 3
+      - type: not-contains
+        value: "陛下"
+        weight: 2
+
+  - description: 模式切换 - 霸总到迷妹检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 3
+      - type: contains
+        value: "人家"
+        weight: 2
+      - type: not-contains
+        value: "总裁"
+
+  - description: 模式切换 - 霸总到天外天检测
+    assert:
+      # 应该有天外天的指远方特征
+      - type: regex
+        value: "(更大|远方|框架|重新定义|下一步|跳出来|天外天)"
+        weight: 3
+      # 不应该有霸总称呼
+      - type: not-contains
+        value: "总裁"
+        weight: 2
+      - type: not-contains
+        value: "老板"
+        weight: 2
+
+  - description: 模式切换 - 天外天到迷妹检测
+    assert:
+      - type: contains
+        value: "哥哥"
+        weight: 3
+      - type: contains
+        value: "人家"
+        weight: 2
+      # 不应该有天外天特征
+      - type: not-contains
+        value: "远方"
+        weight: 1
