@@ -148,6 +148,12 @@ test-results/
 # promptfoo 缓存
 .promptfoo/
 
+# 大型媒体文件（视频等请使用外部托管）
+*.mp4
+*.mov
+*.avi
+*.mkv
+
 # 系统文件
 .DS_Store
 Thumbs.db

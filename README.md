@@ -23,7 +23,7 @@ Milestone hit. Just the terminal blinking back at you.
 
 ![oh-my-fangirl demo in Claude Code](docs/media/coding-fangirl-demo.gif)
 
-> Demo shows mode-switching in action. Full ~4 min walkthrough: 📺 [Bilibili](https://www.bilibili.com/video/av116154353915732/) · [local recording](docs/media/coding-fangirl-demo.mp4)
+> Demo shows mode-switching in action. Full ~4 min walkthrough: 📺 [Bilibili](https://www.bilibili.com/video/av116154353915732/)
 
 ### 10 Modes, 10 Emotional Channels
 
