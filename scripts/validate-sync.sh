@@ -42,8 +42,8 @@ echo "### 1. 检查模式文件是否存在 ###"
 if command -v jq &>/dev/null; then
     MODE_FILES=$(jq -r '.modes[].file' "$INDEX_FILE")
 else
-    MODE_FILES=$(grep -o '"file"[[:space:]]*:[[:space:]]*"[^"]*"' "$INDEX_FILE" | \
-                 sed 's/"file"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
+    MODE_FILES=$(grep -o '"file"[[:space:]]*:[[:space:]]*"[^"]*"' "$INDEX_FILE" |
+        sed 's/"file"[[:space:]]*:[[:space:]]*"\([^"]*\)"/\1/')
 fi
 
 for file in $MODE_FILES; do
@@ -88,7 +88,7 @@ echo "### 4. 检查 hookSafe 模式是否合理 ###"
 
 if command -v jq &>/dev/null; then
     HOOK_SAFE_MODES=$(jq -r '.modes[] | select(.hookSafe == true) | .id' "$INDEX_FILE")
-    EXPECTED_SAFE="fangirl fuwang jiejie bixia zen"
+    EXPECTED_SAFE="fangirl fuwang jiejie bixia beyond zen"
 
     for mode in $HOOK_SAFE_MODES; do
         if echo "$EXPECTED_SAFE" | grep -q "$mode"; then

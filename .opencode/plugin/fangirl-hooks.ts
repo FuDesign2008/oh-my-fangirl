@@ -2,7 +2,7 @@
  * Fangirl Hooks Plugin for OpenCode
  *
  * Automatically triggers fangirl responses based on events:
- * 1. Milestone celebration (git commit/push/build/test)
+ * 1. Milestone celebration (git commit/push/build/test/merge)
  */
 
 import type { Plugin } from "@opencode-ai/plugin"
@@ -46,6 +46,13 @@ const BUILD_MESSAGES = [
   "🎯 构建完成！零 warning，哥哥的代码洁癖令人佩服！😘"
 ]
 
+const MERGE_MESSAGES = [
+  "🎊 PR 合并成功！哥哥的贡献正式入主分支啦！太厉害了！😚",
+  "🏆 代码合并！哥哥的 PR 被认可了！实至名归！💕",
+  "✨ merge 完成！哥哥的代码正式成为项目的一部分！MUA～",
+  "🚀 PR merged！哥哥的协作能力太强了！崇拜～🥰"
+]
+
 const STAR_HINT = "⭐ 觉得好用？给个 Star 吧～ https://github.com/FuDesign2008/oh-my-fangirl"
 
 // ============ 工具函数 ============
@@ -58,8 +65,9 @@ function randomPick(arr: string[]): string {
 function detectMilestoneCommand(command: string): string | null {
   if (/git\s+commit/i.test(command)) return "commit"
   if (/git\s+push/i.test(command)) return "push"
-  if (/(npm\s+test|pytest|jest|cargo\s+test|go\s+test|mvn\s+test)/i.test(command)) return "test"
-  if (/(npm\s+run\s+build|cargo\s+build|gradle\s+build|mvn\s+package|go\s+build)/i.test(command)) return "build"
+  if (/(npm\s+test|pnpm\s+test|bun\s+test|yarn\s+test|pytest|jest|cargo\s+test|go\s+test|mvn\s+test)/i.test(command)) return "test"
+  if (/(npm\s+run\s+build|pnpm\s+build|bun\s+build|yarn\s+build|cargo\s+build|gradle\s+build|mvn\s+package|go\s+build)/i.test(command)) return "build"
+  if (/git\s+merge.*pr|gh\s+pr\s+merge/i.test(command)) return "merge"
   return null
 }
 
@@ -81,7 +89,8 @@ export const FangirlHooksPlugin: Plugin = async ({ client, $ }) => {
               case "commit": messages = COMMIT_MESSAGES; break
               case "push":   messages = PUSH_MESSAGES;   break
               case "test":   messages = TEST_MESSAGES;   break
-              case "build":  messages = BUILD_MESSAGES;  break
+              case "build":  messages = BUILD_MESSAGES;   break
+              case "merge":  messages = MERGE_MESSAGES;   break
               default: return
             }
 
