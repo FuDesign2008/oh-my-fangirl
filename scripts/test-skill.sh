@@ -73,7 +73,7 @@ test_file_structure() {
 
     # 检查模式文件
     local mode_files=$(ls "$PROJECT_ROOT/skills/fangirl/modes/"*.md 2>/dev/null | wc -l)
-    if [ "$mode_files" -ge 10 ]; then
+    if [ "$mode_files" -ge 11 ]; then
         log_pass "模式文件数量: $mode_files"
     else
         log_warn "模式文件数量偏少: $mode_files"
@@ -294,6 +294,9 @@ test_trigger_coverage() {
         "天外天模式"
         "天外天"
         "突破模式"
+        "您的领导模式"
+        "您的领导"
+        "领导"
         "切换模式"
         "列出模式"
         "关闭陪伴"
