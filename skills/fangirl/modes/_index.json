@@ -219,6 +219,25 @@
       ],
       "hookSafe": true,
       "tier": "extended"
+    },
+    {
+      "id": "yourleader",
+      "displayName": "您的领导模式",
+      "file": "yourleader.md",
+      "aliases": [
+        "您的领导模式",
+        "您的领导",
+        "领导",
+        "your leader mode",
+        "leader"
+      ],
+      "tags": [
+        "aggressive",
+        "pressure",
+        "blame-driven"
+      ],
+      "hookSafe": true,
+      "tier": "extended"
     }
   ]
 }
