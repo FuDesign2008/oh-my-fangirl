@@ -492,6 +492,8 @@ https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=jie
   - UTM 参数表无需改（campaign 按模式命名不带日期）
   - notes 文件标记"必填 / 可选"优先级：最低集 = 素材 A + 对话 1 + 结尾故事 + 截图 A
   - **紧急风险项**：真实素材补录时间压缩；若今日 18:00 前 notes 仍未回填最低集，触发**降级方案**：当日延到周四 04-23 发（保持本周周三窗口的最小漂移）
+- 2026-04-22 · 用户选定紧急路径 A（立即回填 notes，目标今日 13:00-14:00 交素材 → 晚间 20:00-22:00 发布）
+  - 后台准备：`docs/superpowers/plans/metrics-log.md` 模板已建，发布后直接填数据即可
 - 2026-XX-XX · W1 数据快照：阅读 ___ / Star ___ / PR ___
 - （继续 append …）
 
