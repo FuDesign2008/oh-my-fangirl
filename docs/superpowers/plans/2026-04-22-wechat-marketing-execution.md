@@ -473,7 +473,14 @@ https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=jie
 ## 决策日志（在执行过程中 append）
 
 - 2026-04-22 · Plan created from brainstorming session
-- 2026-XX-XX · W1 发布日确定为 ___
+- 2026-04-22 · W0 启动：
+  - W0.1 发布窗口定为**每周三**；W1 首发建议下周三 **2026-04-29**（W2=05-06 / W3=05-13 / W4=05-20 / W5=05-27）
+  - W0.2 `drafts/` 目录已建 + README 写入命名约定
+  - W0.3 README 置顶预告 — **跳过**（用户决策）
+  - W0.4 UTM 追踪规则表已建（`docs/superpowers/plans/utm-tracking.md`）
+  - W0.5 GitHub Discussions 分类 — **跳过**（用户决策）
+  - W0.6 跨平台账号 readiness — **暂不处理**
+- 2026-XX-XX · W1 发布日最终确认：___
 - 2026-XX-XX · W1 数据快照：阅读 ___ / Star ___ / PR ___
 - （继续 append …）
 
