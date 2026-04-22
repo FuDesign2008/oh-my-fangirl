@@ -474,13 +474,18 @@ https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=jie
 
 - 2026-04-22 · Plan created from brainstorming session
 - 2026-04-22 · W0 启动：
-  - W0.1 发布窗口定为**每周三**；W1 首发建议下周三 **2026-04-29**（W2=05-06 / W3=05-13 / W4=05-20 / W5=05-27）
+  - W0.1 发布窗口定为**每周三**；W1 首发**确认为 2026-04-29**（W2=05-06 / W3=05-13 / W4=05-20 / W5=05-27）
   - W0.2 `drafts/` 目录已建 + README 写入命名约定
   - W0.3 README 置顶预告 — **跳过**（用户决策）
   - W0.4 UTM 追踪规则表已建（`docs/superpowers/plans/utm-tracking.md`）
   - W0.5 GitHub Discussions 分类 — **跳过**（用户决策）
   - W0.6 跨平台账号 readiness — **暂不处理**
-- 2026-XX-XX · W1 发布日最终确认：___
+- 2026-04-22 · 进入自动模式推进 W1：
+  - W1.1 真实素材收集清单已建（`drafts/2026-04-29-jiejie-w1-notes.md`）—— 等作者回填
+  - W1.2 标题三候选起草完成
+  - W1.3 – W1.7 稿子骨架初稿已写（`drafts/2026-04-29-jiejie-w1.md`），4 处 ⚠️ 标注等真实素材替换
+  - W1.8 骨架版 self-review 通过（9/13 项 ✅，4 项 ⚠️ 待素材替换后复查）
+  - **下一步人工介入点**：作者回填 notes → 告知完成 → 自动模式继续做素材注入 + 最终 self-review
 - 2026-XX-XX · W1 数据快照：阅读 ___ / Star ___ / PR ___
 - （继续 append …）
 
