@@ -4,17 +4,17 @@
 
 ## 目的
 
-公众号正文内所有指向 GitHub 仓库的链接（正文锚点、"阅读原文"、二维码落地页）统一加 UTM 参数，用于区分各周文章的装机转化贡献，回流后在 GitHub Traffic / 仓库 Insights 里对照分析。
+公众号正文内所有指向 GitHub 仓库的链接（正文锚点、"阅读原文"、二维码落地页）统一加 UTM 参数，用于区分各篇文章的装机转化贡献，回流后在 GitHub Traffic / 仓库 Insights 里对照分析。
 
 ## 参数表
 
 | 周 | 模式 | `utm_source` | `utm_campaign` | `utm_medium` |
 | --- | --- | --- | --- | --- |
-| W1 | jiejie | `wechat` | `jiejie_w1` | `article` |
-| W2 | bixia | `wechat` | `bixia_w2` | `article` |
-| W3 | bazong | `wechat` | `bazong_w3` | `article` |
-| W4 | beyond | `wechat` | `beyond_w4` | `article` |
-| W5 | zhiyin 或 fuwang | `wechat` | `w5_final` | `article` |
+| 第一篇 | jiejie | `wechat` | `jiejie_w1` | `article` |
+| 第二篇 | bixia | `wechat` | `bixia_w2` | `article` |
+| 第三篇 | bazong | `wechat` | `bazong_w3` | `article` |
+| 第四篇 | beyond | `wechat` | `beyond_w4` | `article` |
+| 第五篇 | zhiyin 或 fuwang | `wechat` | `w5_final` | `article` |
 
 说明：
 
@@ -42,33 +42,33 @@ https://github.com/FuDesign2008/oh-my-fangirl/blob/main/README.zh.md?utm_source=
 https://github.com/FuDesign2008/oh-my-fangirl/blob/main/skills/fangirl/modes/<mode>.md?utm_source=wechat&utm_campaign=<campaign>&utm_medium=article
 ```
 
-## 各周实例
+## 各篇实例
 
-### W1 · jiejie
+### 第一篇 · jiejie
 
 ```
 https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=jiejie_w1&utm_medium=article
 ```
 
-### W2 · bixia
+### 第二篇 · bixia
 
 ```
 https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=bixia_w2&utm_medium=article
 ```
 
-### W3 · bazong
+### 第三篇 · bazong
 
 ```
 https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=bazong_w3&utm_medium=article
 ```
 
-### W4 · beyond
+### 第四篇 · beyond
 
 ```
 https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=beyond_w4&utm_medium=article
 ```
 
-### W5 · zhiyin 或 fuwang（二选一）
+### 第五篇 · zhiyin 或 fuwang（二选一）
 
 ```
 https://github.com/FuDesign2008/oh-my-fangirl?utm_source=wechat&utm_campaign=w5_final&utm_medium=article
